@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/home', function () {
+    return view('home');
+});
 
-Route::get('/home', 'HomeController@index');
+Route::get('login', 'Auth\AuthController@login');
+Route::post('login', 'Auth\AuthController@postlogin');
+
+Route::get('auth/token/{token}', 'Auth\AuthController@authenticate');
+
+Route::post('logout', 'Auth\AuthController@logout');
